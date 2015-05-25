@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MagicBuilder.Models;
+using Microsoft.AspNet.Identity;
 
 namespace MagicBuilder.Controllers
 {
@@ -15,12 +16,18 @@ namespace MagicBuilder.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Decks
+        [Authorize]
         public ActionResult Index()
         {
-            return View(db.Decks.ToList());
+            var userId = User.Identity.GetUserId();
+
+            List<Deck> decks = db.Decks.Where(t => t.UserId == userId).ToList();
+           
+            return View(decks);
         }
 
         // GET: Decks/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -52,6 +59,7 @@ namespace MagicBuilder.Controllers
         {
             if (ModelState.IsValid)
             {
+                deck.UserId = User.Identity.GetUserId();
                 db.Decks.Add(deck);
                 db.SaveChanges();
                 return RedirectToAction("Index");

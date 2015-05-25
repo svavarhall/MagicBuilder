@@ -45,7 +45,7 @@ namespace MagicBuilder.Migrations
             context.Decks.AddOrUpdate(p => p.Name,
                new Deck
                {
-                   Name = "Favorites", 
+                   Name = "Favorites",
                }
              );
             var decks = new List<Deck>
@@ -56,6 +56,6 @@ namespace MagicBuilder.Migrations
             decks.ForEach(s => context.Decks.Add(s));
             context.SaveChanges();
         }
-   }
+    }
 
 }
