@@ -1,0 +1,18 @@
+﻿@model MtgDb.Info.Card
+
+@{
+    ViewBag.Title = "Search for cards";
+}
+
+<h2>Forge</h2>
+
+<div>
+    <h4>Card Search</h4>
+    @using (Html.BeginForm("Search"))
+    {
+    <input type="text" name="Search" />
+    <input type="submit" value="Submit" />
+
+    }
+
+</div>
