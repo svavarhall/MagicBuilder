@@ -1,0 +1,29 @@
+https://www.firebase.com/docs/how-firebase-works.html
+
+Save data in the cloud
+
+A Firebase itself is your realtime database, hosted in the cloud. Since Firebase is a NoSQL database you can easily store data as simple JSON documents.
+
+Our servers are optimized for extremely low latencies. Firebase is fast enough for high performance real-time applications like multiplayer games. We maintain persistent connections between your clients and our servers so that data synchronizes both directions without delay. You can expect typical network latencies (less than 100ms) for data updates between clients.
+
+Realtime Data
+
+At a high level, Firebase is simply a database with a RESTFul API. Each individual Firebase has a name and its own URL endpoint. Therefore if your Firebase’s name is my-firebase, the URL would be https://my-firebase.firebaseio.com/. Using this API endpoint you can easily store and read data right out of your Firebase.
+
+Firebase isn't just an API though. After data is stored in your Firebase it gets streamed in realtime to every connected client. This means that Firebase automatically updates all clients with the newest set of data.
+
+Security is easy and reliable with Firebase. Firebase requires SSL encryption with 2048-bit certificates for all data transfer. All unsecured traffic is rejected.
+
+Firebase also allows you to restrict reading and writing via granular access controls and custom authentication. Our rules-based security approach to security gives Firebase the most flexible security solution of any cloud data service. This way, all data security code is written in one central place. Rather than it sprinkled throughout your application.
+
+Firebase Benefits & Features
+
+Build fully featured modern applications with just frontend code.
+Save development time by focusing on building a great front-end app.
+Sync and store application and user data instantly across multiple platforms.
+No need to provision or manage server infrastructure.
+Firebase automatically scales with you.
+Cross platform clients make it easy to integrate Firebase with your mobile apps, web apps or any existing server infrastructure.
+Easy to use user authentication and authorization.
+Firebase is secure by default with SSL encryption, using 2048-bit certificates.
+Production-grade static asset hosting with SSL and CDN content delivery baked in.
