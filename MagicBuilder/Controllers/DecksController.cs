@@ -43,7 +43,7 @@ namespace MagicBuilder.Controllers
         }
 
         // GET: Decks/Create
-        [Authorize(Roles = "canEdit")]
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -53,8 +53,7 @@ namespace MagicBuilder.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Authorize(Roles = "canEdit")]
+        [Authorize]
         public ActionResult Create([Bind(Include = "DeckID,Name")] Deck deck)
         {
             if (ModelState.IsValid)
@@ -69,7 +68,7 @@ namespace MagicBuilder.Controllers
         }
 
         // GET: Decks/Edit/5
-        [Authorize(Roles = "canEdit")]
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -89,7 +88,7 @@ namespace MagicBuilder.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "canEdit")]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "DeckID,Name")] Deck deck)
         {
             if (ModelState.IsValid)
@@ -102,7 +101,7 @@ namespace MagicBuilder.Controllers
         }
 
         // GET: Decks/Delete/5
-        [Authorize(Roles = "canEdit")]
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -120,7 +119,7 @@ namespace MagicBuilder.Controllers
         // POST: Decks/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "canEdit")]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Deck deck = db.Decks.Find(id);

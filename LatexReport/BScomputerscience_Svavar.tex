@@ -144,10 +144,10 @@ This system, called Magic Builder, is meant as a reference guide for Magic playe
 
 \section{Competition}
 \subsection{mtg vault}
-This website is an extensive library of Magic The Gathering information. The website mostly centers around viewing decks from other users and sharing your own...
+This website is an extensive library of Magic The Gathering information. The website mostly centers around viewing decks from other users and sharing your own. The card search is advanced and gives a lot of options. Overall the website works pretty well and is easy to use. The biggest flaws I noticed while researching MtgVault concern the look and feel of the site, it looks dated and unresponsive, when using the card search or clicking items the page executes a full reload and most importantly the page is not scalable and therefore only works on desktop computers.
 (\href{http://www.mtgvault.com/}{mtg vault}).
 \subsection{mtg vault}
-Although the mtg Vault website does have similar options as Magic Builder I feel that my priority will mostly be on a simple, fast and easy to use website...
+Magic builder will feature a lot of the same functions as mtgVault such as searching for cards and building decks, however my goal is to make Magic builder simple, fast and available on all screen sizes. 
 
 \section{The Average User}
 perhaps a text about the purpose of this section...
@@ -225,16 +225,8 @@ This diagram is meant as an overview of the navigation throughout the system. Th
   \makebox[\textwidth]{\includegraphics[width=0.5\textwidth]{StatechartDiagram1.png}}
 \end{center}
 
-\section{Class Diagram}
-about the class diagram...
-the diagram...
-%   \subsection{Class Diagram}
-% \begin{center}
-%   \makebox[\textwidth]{\includegraphics[width=\paperwidth]{charts/ClassDiagram.png}}
-% \end{center}
-
 \section{The Database}
-about the database development... 
+Magic builder uses two different databases. All card data is pulled from an online database \href{http://api.mtgdb.info/}{http://api.mtgdb.info/} that serves json data through http GET requests. The database is accessed through a C\# driver that gives access to a library of methods that can be used to query the server for data. User data is stored in a SQL database kept locally on the server.
 
 \section{Description of Technical Environment}
 During the programming phase I will explore different ways of developing the system. The following tools have been and will be used during preparation and production of the system.
@@ -270,6 +262,8 @@ I decided to put forth a few programming rules to follow, for better consistency
     \item Use unordered list for navigation.
     \item Always place the alt attribute for images.
   \end{itemize}
+ \clearpage
+  
   \lstinputlisting[language=HTML]{ProgrammingRules/HTMLrules.html}
 
   \subsection{CSS}
@@ -343,8 +337,10 @@ I decided to put forth a few programming rules to follow, for better consistency
 
 \section{The Production Process}
 \subsection{How the overall production fared}
+In the first stages of development the core functionality such as logic and view rendering will be done on the server but when I've finished building the core functions on the server and the user interface is complete I plan to  move the view rendering to the browser. To make the page faster and enable asynchronous loading of page elements I will use Javascript AJAX calls to send and receive data from  the server. By building the system incrementally I can ensure that the page will work on a large range of devices, including ones with Javascript turned off.
 \subsection{What went wrong and how it can be done better next time
 }
+I initially started building the system using AngularJS along with an online database \href{http://www.firebase.com}{www.firebase.com}. I had some trouble getting things to work, especially concerning the database connections. In the end i decided that AngularJS framework was too large and complex for the simple functionality of Magic Builder so i abandoned that approach in favor of using asp.net MVC5. Having had no experience with both of those systems I spent a lot of time doing tutorials and reading about how things work. I also started from scratch a few times in order to eliminate design errors while building the database and models. Getting the initial system to build, connecting the database and enable-ing user accounts can fail in a number of ways and errors can pop up that can be hard to handle.
 
 \section{Requirements Outcome}
 \subsection{What Requirements were met}

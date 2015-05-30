@@ -1,81 +1,53 @@
-﻿@model MtgDb.Info.Card
+﻿@model IEnumerable<MtgDb.Info.Card>
+@using System.Linq
 
 @{
     ViewBag.Title = "CardDetail";
 }
 
-<h2>CardDetail</h2>
+<h2>Welcome to Magic builder</h2>
 
-<div>
-    <h4>Card</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        @*<dt>
-                @Html.DisplayNameFor(model => model.MultiverseId)
-            </dt>*@
-
-        @*<dd>
-                @Html.DisplayFor(model => model.MultiverseId)
-            </dd>*@
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CardImage)
-        </dt>
-
-        <dd>
-            <a></a>@Html.DisplayFor(model => model.CardImage)
-        </dd>
-
-    </dl>
-</div>
-@*<p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.CardId }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>*@
-
-
-
-
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+@using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "bs-component" }))
+{
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <input name="searchString" type="text" class="form-control">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">Search</button>
+                    </span>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+}
+
+@if (Model.Any())
+{
+            <h3 class="sr-only">Search results</h3>
+            <div class="row cards">
+                @foreach (var item in Model)
+        {
+                    <div class="card col-sm-4 col-md-3">
+                        <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                            <div class="flipper">
+                                <div class="front">
+                                    <img class="card-image"
+                                         src="@item.CardImage"
+                                         alt="Card Image" />
+                                </div>
+                                <div class="back card-back">
+                                    <p>Rulings:</p>
+                                    @for (int i = 0; i < item.Rulings.ToArray().Length; i++)
+                            {
+                                        @Html.DisplayFor(Card => item.Rulings[i])<br />
+                            }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+        }
+            </div>
+}

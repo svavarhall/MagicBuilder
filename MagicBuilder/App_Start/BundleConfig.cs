@@ -24,11 +24,8 @@ namespace MagicBuilder
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap-superhero.css",
+                      "~/Content/bootstrap-cosmo.css",
                       "~/Content/site.css"));
-
-            bundles.Add(new LessBundle("~/Content/less").Include(
-                    "~/Content/variables.less"));
         }
     }
 }
