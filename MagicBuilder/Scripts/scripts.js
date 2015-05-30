@@ -16,3 +16,11 @@ $('a.back-to-top').click(function () {
     }, 700);
     return false;
 });
+
+// Activate Forge deck tabs
+$('#deck-tabs a').click(function (e) {
+    e.preventDefault()
+    $(this).tab('show')
+})
+
+$('#deck-tabs a:first').tab('show') // Select first tab

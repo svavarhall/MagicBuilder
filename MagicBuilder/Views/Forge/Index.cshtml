@@ -1,18 +1,130 @@
-﻿@model MtgDb.Info.Card
+﻿@model MagicBuilder.ViewModels.ForgeViewModel
+@using System.Linq
 
 @{
     ViewBag.Title = "Search for cards";
 }
 
-<h2>Forge</h2>
+<h2 class="text-center">Welcome to Magic builder Forge</h2>
+<div class="well">
+    <p class="text-center">
+        To build a deck you can make use of our card search, howering a card gives you the option
+        of adding it to a deck.
+    </p>
+</div>
 
-<div>
-    <h4>Card Search</h4>
-    @using (Html.BeginForm("Search"))
+<h3 class="text-center">Available Decks</h3>
+<div class="well">
+    <div role="tabpanel">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#create-deck" aria-controls="create-deck" role="tab" data-toggle="tab">Create deck</a>
+            </li>
+            @foreach (var deck in Model.Decks)
+            {
+                <li role="presentation">
+                    <a href="#@deck.DeckID" aria-controls="@deck.DeckID" role="tab" data-toggle="tab">@deck.Name</a>
+                </li>
+            }
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="create-deck">
+                @using (Html.BeginForm("AddDeck", "Forge", FormMethod.Post, new { @class = "bs-component" }))
+                {
+                    <div class="row center-block">
+                        <div class="col-md-offset-3 col-md-6">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input name="deckName" type="text" class="form-control">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="submit">Create</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            @foreach (var deck in Model.Decks)
+            {
+                <div role="tabpanel" class="tab-pane" id="@deck.DeckID">
+                    <div class="row center-block">
+                        <div class="col-md-offset-3 col-md-6">
+                            <p>
+                                Size: @deck.CardsInDeck.ToArray().Length
+                            </p>
+      
+                            @using (Html.BeginForm("RenameDeck", "Forge", FormMethod.Post, new { @class = "bs-component" }))
+                            {
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input name="deckName" type="text" class="form-control">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="submit">Rename</button>
+                                        </span>
+                                    </div>
+                                </div>
+                                    }
+                            @using (Html.BeginForm("DeleteDeck", "Forge", FormMethod.Post, new { @class = "bs-component" }))
+                            {
+                                <div class="form-group">
+                                    <div class="btn-group" role="group">
+                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>    
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+    @using (Html.BeginForm("Search", "Forge", FormMethod.Get, new { @class = "bs-component" }))
     {
-    <input type="text" name="Search" />
-    <input type="submit" value="Submit" />
-
+        <div class="row center-block">
+            <div class="col-md-offset-3 col-md-6">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input name="searchString" type="text" class="form-control">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">Search</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
     }
 
-</div>
+    @if (Model.SearchResults != null)
+    {
+        <h3 class="sr-only">Search results</h3>
+        <div class="row cards">
+            @foreach (var card in Model.SearchResults)
+            {
+                <div class="card col-sm-4 col-md-3">
+                    <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                        <div class="flipper">
+                            <div class="front">
+                                <img class="card-image"
+                                     src="@card.CardImage"
+                                     alt="Card Image" />
+                            </div>
+                            <div class="back card-back">
+                                <p>Rulings:</p>
+                                @for (int i = 0; i < card.Rulings.ToArray().Length; i++)
+                                {
+                                    @Html.DisplayFor(Card => card.Rulings[i])<br />
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+    }

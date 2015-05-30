@@ -1,4 +1,6 @@
-﻿using System.Web;
+﻿using BundleTransformer.Core.Bundles;
+using BundleTransformer.Core.Orderers;
+using System.Web;
 using System.Web.Optimization;
 
 namespace MagicBuilder
@@ -23,9 +25,15 @@ namespace MagicBuilder
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap-cosmo.css",
-                      "~/Content/site.css"));
+
+
+            var commonStylesBundle = new CustomStyleBundle(@"~/bundles/bootstrapless");
+            commonStylesBundle.Orderer = new NullOrderer();
+            commonStylesBundle.Include("~/Content/bootstrap/bootstrap.less");
+            commonStylesBundle.Include("~/Content/site.less");
+            bundles.Add(commonStylesBundle);
+
+            BundleTable.EnableOptimizations = true;
         }
     }
 }

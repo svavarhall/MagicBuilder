@@ -7,6 +7,8 @@ using System.Web.Mvc;
 using MagicBuilder.Models;
 using MtgDb.Info.Driver;
 using Microsoft.AspNet.Identity;
+using MagicBuilder.Repositories;
+using MagicBuilder.ViewModels;
 
 namespace MagicBuilder.Controllers
 {
@@ -14,28 +16,52 @@ namespace MagicBuilder.Controllers
     {
         // Open a connection to Mtgdb.com
         // https://api.mtgdb.info/ for info
-        Db cardData = new Db();
+        Db mtgDb = new Db();
 
-        // GET: Forge
+        // Open a connection to the user database
+        private ApplicationDbContext db = new ApplicationDbContext();
+
+        /// <summary>
+        /// Initial view
+        /// </summary>
+        [HttpGet]
+        [Authorize]
         public ActionResult Index()
         {
-            return View();
+            var deckRepository = new DeckRepository();
+            var forgeViewModel = new ForgeViewModel();
+            var userId = User.Identity.GetUserId();
+
+            // Get decks from the database
+            List<Deck> decks = db.Decks.Where(t => t.UserId == userId).ToList();
+
+            //assign values for viewmodel
+            forgeViewModel.Decks = decks;
+            forgeViewModel.UserId = userId;
+
+            //send viewmodel into UI (View)
+            return View("Index", forgeViewModel);
         }
 
-        // GET: Forge/Search/
+        /// <summary>
+        /// Search for cards
+        /// </summary>
+        [HttpGet]
         [Authorize]
-        public ActionResult Details(FormCollection searchData)
+        public ActionResult Search(ForgeViewModel forgeViewModel)
         {
-            if (searchData == null)
+            MtgDb.Info.Card[] searchResults = new MtgDb.Info.Card[] {};
+            if (!String.IsNullOrEmpty(forgeViewModel.SearchString))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                searchResults = mtgDb.Search(forgeViewModel.SearchString.Trim(), 0, 25, false);
             }
-            MtgDb.Info.Card[] cards = cardData.Search(searchData["searchTerm"]);
-            if (cards == null)
+
+            if (searchResults.Length > 0)
             {
-                return HttpNotFound();
+                forgeViewModel.SearchResults = searchResults;
             }
-            return View(cards);
+            
+            return View("Index",forgeViewModel);
         }
     }
 }
