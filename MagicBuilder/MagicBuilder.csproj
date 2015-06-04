@@ -239,29 +239,29 @@
     <Content Include="Content\bootstrap\bootstrap.min.css">
       <DependentUpon>bootstrap.css</DependentUpon>
     </Content>
-    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Content\bootstrap\images\up-arrow.png" />
-    <Content Include="Content\bootstrap\magnific-popup.css" />
-    <Content Include="Content\bootstrap\site.css">
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\images\up-arrow.png" />
+    <Content Include="Content\magnific-popup.css" />
+    <Content Include="Content\site.css">
       <DependentUpon>site.less</DependentUpon>
     </Content>
-    <Content Include="Content\bootstrap\site.min.css">
+    <Content Include="Content\site.min.css">
       <DependentUpon>site.css</DependentUpon>
     </Content>
     <Content Include="robots.txt" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Content\bootstrap\site.css.map">
+    <Content Include="Content\site.css.map">
       <DependentUpon>site.css</DependentUpon>
     </Content>
     <Content Include="Content\bootstrap\bootstrap.css.map">
       <DependentUpon>bootstrap.css</DependentUpon>
     </Content>
-    <None Include="Content\bootstrap\site.less" />
-    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <None Include="Content\site.less" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap\wells.less" />
     <Content Include="Content\bootstrap\variables.less" />
     <Content Include="Content\bootstrap\utilities.less" />
