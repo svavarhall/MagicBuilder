@@ -29,7 +29,6 @@ namespace MagicBuilder
             commonStylesBundle.Orderer = new NullOrderer();
             commonStylesBundle.Include("~/Content/bootstrap/bootstrap.less");
             commonStylesBundle.Include("~/Content/bootstrap/magnific-popup.css");
-            commonStylesBundle.Include("~/Content/bootstrap/site.less");
             bundles.Add(commonStylesBundle);
 
             BundleTable.EnableOptimizations = true;

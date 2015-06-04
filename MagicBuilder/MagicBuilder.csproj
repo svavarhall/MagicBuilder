@@ -233,6 +233,12 @@
     <None Include="ClearScript.V8\v8-x64.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="Content\bootstrap\bootstrap.css">
+      <DependentUpon>bootstrap.less</DependentUpon>
+    </Content>
+    <Content Include="Content\bootstrap\bootstrap.min.css">
+      <DependentUpon>bootstrap.css</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\bootstrap\images\up-arrow.png" />
     <Content Include="Content\bootstrap\magnific-popup.css" />
@@ -247,6 +253,9 @@
     <Content Include="Global.asax" />
     <Content Include="Content\bootstrap\site.css.map">
       <DependentUpon>site.css</DependentUpon>
+    </Content>
+    <Content Include="Content\bootstrap\bootstrap.css.map">
+      <DependentUpon>bootstrap.css</DependentUpon>
     </Content>
     <None Include="Content\bootstrap\site.less" />
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
