@@ -192,7 +192,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\DecksController.cs" />
     <Compile Include="Controllers\ForgeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -234,26 +233,26 @@
     <None Include="ClearScript.V8\v8-x64.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Content\images\up-arrow.png" />
-    <Content Include="Content\magnific-popup.css" />
-    <Content Include="Content\site.css">
+    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\bootstrap\images\up-arrow.png" />
+    <Content Include="Content\bootstrap\magnific-popup.css" />
+    <Content Include="Content\bootstrap\site.css">
       <DependentUpon>site.less</DependentUpon>
     </Content>
-    <Content Include="Content\site.min.css">
+    <Content Include="Content\bootstrap\site.min.css">
       <DependentUpon>site.css</DependentUpon>
     </Content>
     <Content Include="robots.txt" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Content\site.css.map">
+    <Content Include="Content\bootstrap\site.css.map">
       <DependentUpon>site.css</DependentUpon>
     </Content>
-    <None Include="Content\site.less" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <None Include="Content\bootstrap\site.less" />
+    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap\wells.less" />
     <Content Include="Content\bootstrap\variables.less" />
     <Content Include="Content\bootstrap\utilities.less" />
@@ -382,11 +381,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Decks\Create.cshtml" />
-    <Content Include="Views\Decks\Delete.cshtml" />
-    <Content Include="Views\Decks\Details.cshtml" />
-    <Content Include="Views\Decks\Edit.cshtml" />
-    <Content Include="Views\Decks\Index.cshtml" />
     <Content Include="Views\Forge\Index.cshtml" />
     <Content Include="Views\Shared\_AuthenticatedLinksPartial.cshtml" />
     <Content Include="Views\Partials\_CardDetails.cshtml" />
