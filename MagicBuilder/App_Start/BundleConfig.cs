@@ -25,11 +25,10 @@ namespace MagicBuilder
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
-
-
             var commonStylesBundle = new CustomStyleBundle(@"~/bundles/bootstrapless");
             commonStylesBundle.Orderer = new NullOrderer();
             commonStylesBundle.Include("~/Content/bootstrap/bootstrap.less");
+            commonStylesBundle.Include("~/Content/magnific-popup.css");
             commonStylesBundle.Include("~/Content/site.less");
             bundles.Add(commonStylesBundle);
 

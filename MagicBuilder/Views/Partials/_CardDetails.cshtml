@@ -1,0 +1,87 @@
+﻿@model MtgDb.Info.Card
+
+<a href="#@Html.Raw(@Model.Id + "-mpf")" class="open-popup-link btn btn-primary btn-block voffset2">Card details</a>
+<div id="@Html.Raw(@Model.Id + "-mpf")" class="card-popup mfp-hide">
+    <div class="row voffset3">
+        <div class="col-md-6 ">
+            <img class="card-image" src="@Model.CardImage" alt="Card Image" />
+        </div>
+        <div class="col-md-6">
+            <div class="table-responsive">
+                <table class="table">
+                    <tr>
+                        <td>Name</td>
+                        <td>@Model.Name</td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td>@Model.Description</td>
+                    </tr>
+                    <tr>
+                        <td>Colors</td>
+                        <td>
+                            @foreach (var color in Model.Colors)
+                            { @Html.Raw(color + " ");
+                            } <br />
+                        </td>
+                    </tr>
+                    <tr>
+                    <tr>
+                        <td>Manacost</td>
+                        <td>@Model.ManaCost</td>
+                    </tr>
+                    <tr>
+                        <td>ConvertedManacost</td>
+                        <td>@Model.ConvertedManaCost</td>
+                    </tr>
+                    <tr>
+                        <td>CardSetName</td>
+                        <td>@Model.CardSetName</td>
+                    </tr>
+                    <tr>
+                        <td>Type</td>
+                        <td>@Model.Type</td>
+                    </tr>
+                    <tr>
+                        <td>Subtype</td>
+                        <td>@Model.SubType</td>
+                    </tr>
+                    <tr>
+                        <td>Toughness</td>
+                        <td>@Model.Toughness</td>
+                    </tr>
+                    <tr>
+                        <td>Power</td>
+                        <td>@Model.Power</td>
+                    </tr>
+                    <tr>
+                        <td>Rarity</td>
+                        <td>@Model.Rarity</td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+        @if (Model.Rulings != null && Model.Rulings.Count() > 0)
+        {
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <td>ReleasedAt</td>
+                            <td>Rule</td>
+                        </tr>
+                        @foreach (var ruling in Model.Rulings)
+                        {
+                            <tr>
+                                <td>@String.Format("{0:d MMM yyyy}", ruling.ReleasedAt)</td>
+                                <td>@ruling.Rule</td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

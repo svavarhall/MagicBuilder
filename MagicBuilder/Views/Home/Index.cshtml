@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MtgDb.Info.Card>
+﻿@model MagicBuilder.ViewModels.ForgeViewModel
 @using System.Linq
 
 @{
@@ -6,48 +6,33 @@
 }
 
 <h2 class="text-center">Welcome to Magic builder</h2>
-
-@using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "bs-component" }))
+@using (Html.BeginForm("Search", "Home", FormMethod.Get))
 {
-    <div class="row center-block">
-        <div class="col-md-offset-3 col-md-6">
-            <div class="form-group">
-                <div class="input-group">
-                    <input name="searchString" type="text" class="form-control">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="submit">Search</button>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
+    @Html.Partial("../Partials/_SearchForm")
 }
 
-@if (Model.Any())
+@if (Model.SearchResults != null)
 {
-            <h3 class="sr-only">Search results</h3>
-            <div class="row cards">
-                @foreach (var item in Model)
+    <h3 class="sr-only">Search results</h3>
+    <div class="row cards">
+        @foreach (var card in Model.SearchResults)
         {
-                    <div class="card col-sm-4 col-md-3">
-                        <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
-                            <div class="flipper">
-                                <div class="front">
-                                    <img class="card-image"
-                                         src="@item.CardImage"
-                                         alt="Card Image" />
-                                </div>
-                                <div class="back card-back">
-                                    <p>Rulings:</p>
-                                    @for (int i = 0; i < item.Rulings.ToArray().Length; i++)
-                            {
-                                        @Html.DisplayFor(Card => item.Rulings[i])<br />
-                            }
-                                </div>
-                            </div>
+            <div class="card col-sm-4 col-md-3">
+                <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                    <div class="flipper">
+                        <div class="front">
+                            <img class="card-image"
+                                    src="@card.CardImage"
+                                    alt="Card Image" />
+                        </div>
+                        <div class="back card-back">
+                            @Html.Partial("../Partials/_CardDetails", card)
                         </div>
                     </div>
+                </div>
+            </div>
+
 
         }
-            </div>
+    </div>
 }

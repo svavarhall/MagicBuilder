@@ -5,34 +5,40 @@ using System.Web;
 using System.Web.Mvc;
 using MtgDb.Info.Driver;
 using MagicBuilder.Models;
+using MagicBuilder.ViewModels;
+using MagicBuilder.Repositories;
 
 namespace MagicBuilder.Controllers
 {
     public class HomeController : Controller
     {
-        Db database = new Db();  
-        private ApplicationDbContext db = new ApplicationDbContext();
-
-        //MtgDb.Info.CardSet[] sets;
-        MtgDb.Info.Card[] cards;
+        ForgeRepository forgeRepository = new ForgeRepository();
 
         [AllowAnonymous]
         public ActionResult Index(String searchString)
         {
+            var forgeViewModel = new ForgeViewModel();
 
-            //sets = database.GetSets();
-            
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                cards = database.Search(searchString.Trim(), 0, 25, false);
-            }
+            return View(forgeViewModel);
+        }
 
-            if (cards == null)
-            {
-                cards = new MtgDb.Info.Card[] { };
-            }
-            //ViewBag.Sets = sets;
-            return View(cards);
+        /// <summary>
+        /// Search for cards
+        /// </summary>
+        [HttpGet]
+        public ActionResult Search(
+            String searchTerm,
+            String color,
+            String setId,
+            String manaCost,
+            String rarity)
+        {
+            var forgeViewModel = new ForgeViewModel();
+
+            forgeViewModel.SearchResults =
+                forgeRepository.searchCards(searchTerm, color, setId, manaCost, rarity);
+
+            return View("Index", forgeViewModel);
         }
     }
 }

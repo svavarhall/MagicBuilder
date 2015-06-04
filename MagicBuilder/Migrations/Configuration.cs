@@ -1,5 +1,6 @@
 namespace MagicBuilder.Migrations
 {
+    using MagicBuilder.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -9,11 +10,12 @@ namespace MagicBuilder.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(MagicBuilder.Models.ApplicationDbContext context)
         {
+            ApplicationDbContext db = new ApplicationDbContext();
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 

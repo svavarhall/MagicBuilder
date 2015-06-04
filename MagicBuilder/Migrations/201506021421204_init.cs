@@ -3,10 +3,22 @@ namespace MagicBuilder.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class init : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.Cards",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        deckId = c.Int(nullable: false),
+                        cardId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Decks", t => t.deckId, cascadeDelete: true)
+                .Index(t => t.deckId);
+            
             CreateTable(
                 "dbo.Decks",
                 c => new
@@ -16,18 +28,6 @@ namespace MagicBuilder.Migrations
                         Name = c.String(),
                     })
                 .PrimaryKey(t => t.DeckID);
-            
-            CreateTable(
-                "dbo.Cards",
-                c => new
-                    {
-                        CardID = c.Int(nullable: false, identity: true),
-                        MultiverseId = c.String(),
-                        Deck_DeckID = c.Int(),
-                    })
-                .PrimaryKey(t => t.CardID)
-                .ForeignKey("dbo.Decks", t => t.Deck_DeckID)
-                .Index(t => t.Deck_DeckID);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -105,21 +105,21 @@ namespace MagicBuilder.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropForeignKey("dbo.Cards", "Deck_DeckID", "dbo.Decks");
+            DropForeignKey("dbo.Cards", "deckId", "dbo.Decks");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
-            DropIndex("dbo.Cards", new[] { "Deck_DeckID" });
+            DropIndex("dbo.Cards", new[] { "deckId" });
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
-            DropTable("dbo.Cards");
             DropTable("dbo.Decks");
+            DropTable("dbo.Cards");
         }
     }
 }

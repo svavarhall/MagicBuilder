@@ -13,6 +13,6 @@ namespace MagicBuilder.Models
         public int DeckID { get; set; }
         public String UserId { get; set; }
         public String Name { get; set; }
-        public virtual ICollection<MtgDb.Info.Card> CardsInDeck { get; set; }
+        public ICollection<Card> CardsInDeck { get; set; }
     }
 }

@@ -12,10 +12,11 @@ namespace MagicBuilder.ViewModels
     {
         public String UserId { get; set; }
 
-        public String SearchString { get; set; }
+        public String SearchTerm { get; set; }
 
-        [Required(ErrorMessage = "required")]
-        public string DeckName { get; set; }
+        public String DeckName { get; set; }
+
+        public int? currentDeckId { get; set; }
 
         public virtual Deck CurrentDeck { get; set; }
 

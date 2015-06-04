@@ -1,0 +1,64 @@
+﻿<div class="row center-block voffset5">
+    <div class="col-md-offset-2 col-md-8">
+        <div class="form-group">
+            <div class="input-group">
+                @Html.Label("searchTerm", new { @class = "sr-only" })
+                <input name="searchTerm" type="text" class="form-control" />
+
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </span>
+            </div>
+            <div class="form-inline">
+                @Html.Label("color", new { @class = "sr-only" })
+                <select name="color" class="form-control voffset2">
+                    <option value="">Choose color</option>
+                    <option value="white">White</option>
+                    <option value="blue">Blue</option>
+                    <option value="black">Black</option>
+                    <option value="red">Red</option>
+                    <option value="green">Green</option>
+                </select>
+                @Html.Label("setId", new { @class = "sr-only" })
+                <select name="setId" class="form-control voffset2">
+                    <option value="">Choose set</option>
+                    <option value="M14">Magic 2014</option>
+                    <option value="THS">Theros</option>
+                    <option value="BNG">Born of the gods</option>
+                    <option value="JOU">Journey into Nyx</option>
+                    <option value="blue">Blue</option>
+                    <option value="M15">Magic 2015</option>
+                    <option value="KTK">Khans of Tarkir</option>
+                    <option value="FRF">Fate Reforged</option>
+                </select>
+                @Html.Label("manaCost", new { @class = "sr-only" })
+                <select name="manaCost" class="form-control voffset2">
+                    <option value="">Mana Cost</option>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                </select>
+                @Html.Label("rarity", new { @class = "sr-only" })
+                <select name="rarity" class="form-control voffset2">
+                    <option value="">Rarity</option>
+                    <option value="Common">Common</option>
+                    <option value="Uncommon">Uncommon</option>
+                    <option value="Rare">Rare</option>
+                    <option value="Mythic Rare">Mythic Rare</option>
+
+                </select>
+            </div>
+        </div>
+    </div>
+</div>

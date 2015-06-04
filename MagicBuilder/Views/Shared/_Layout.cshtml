@@ -21,7 +21,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Browse cards", "Index", "Home")</li>
                     @Html.Partial("_AuthenticatedLinksPartial")
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -32,7 +32,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Magic Builder</p>
         </footer>
     </div>
 
@@ -41,6 +41,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/Scripts/scripts.js")
+    @Scripts.Render("~/Scripts/jquery.magnific-popup.js")
     @RenderSection("scripts", required: false)
 </body>
 </html>

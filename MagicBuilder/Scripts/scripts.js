@@ -17,10 +17,11 @@ $('a.back-to-top').click(function () {
     return false;
 });
 
-// Activate Forge deck tabs
-$('#deck-tabs a').click(function (e) {
-    e.preventDefault()
-    $(this).tab('show')
-})
 
-$('#deck-tabs a:first').tab('show') // Select first tab
+$(document).ready(function () {
+    // Init magnific popups
+    $('.open-popup-link').magnificPopup({
+        type: 'inline',
+        midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+    });
+});

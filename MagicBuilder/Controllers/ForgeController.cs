@@ -9,18 +9,13 @@ using MtgDb.Info.Driver;
 using Microsoft.AspNet.Identity;
 using MagicBuilder.Repositories;
 using MagicBuilder.ViewModels;
+using System.Data.Entity;
 
 namespace MagicBuilder.Controllers
 {
     public class ForgeController : Controller
     {
-        // Open a connection to Mtgdb.com
-        // https://api.mtgdb.info/ for info
-        Db mtgDb = new Db();
-
-        // Open a connection to the user database
-        private ApplicationDbContext db = new ApplicationDbContext();
-
+        ForgeRepository forgeRepository = new ForgeRepository();
         /// <summary>
         /// Initial view
         /// </summary>
@@ -28,16 +23,10 @@ namespace MagicBuilder.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            var deckRepository = new DeckRepository();
             var forgeViewModel = new ForgeViewModel();
-            var userId = User.Identity.GetUserId();
 
-            // Get decks from the database
-            List<Deck> decks = db.Decks.Where(t => t.UserId == userId).ToList();
-
-            //assign values for viewmodel
-            forgeViewModel.Decks = decks;
-            forgeViewModel.UserId = userId;
+            forgeViewModel = populateViewModel(forgeViewModel);
+            
 
             //send viewmodel into UI (View)
             return View("Index", forgeViewModel);
@@ -48,20 +37,151 @@ namespace MagicBuilder.Controllers
         /// </summary>
         [HttpGet]
         [Authorize]
-        public ActionResult Search(ForgeViewModel forgeViewModel)
+        public ActionResult Search(
+            String searchTerm, 
+            String color, 
+            String setId, 
+            String manaCost, 
+            String rarity)
         {
-            MtgDb.Info.Card[] searchResults = new MtgDb.Info.Card[] {};
-            if (!String.IsNullOrEmpty(forgeViewModel.SearchString))
+            var forgeViewModel = new ForgeViewModel();
+
+            forgeViewModel.SearchResults = 
+                forgeRepository.searchCards(searchTerm, color, setId, manaCost, rarity);
+            forgeViewModel = populateViewModel(forgeViewModel);
+
+            return View("Index", forgeViewModel);
+        }
+
+        /// <summary>
+        /// Create new deck linked to user
+        /// </summary>
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateDeck(String deckName)
+        {
+            var forgeViewModel = new ForgeViewModel();  
+
+            if (ModelState.IsValid)
             {
-                searchResults = mtgDb.Search(forgeViewModel.SearchString.Trim(), 0, 25, false);
+                forgeRepository.createDeck(deckName, User.Identity.GetUserId());
             }
 
-            if (searchResults.Length > 0)
+            forgeViewModel = populateViewModel(forgeViewModel);
+
+            return View("Index", forgeViewModel);
+        }
+
+        /// <summary>
+        /// Select a deck to work with
+        /// </summary>
+        [HttpGet]
+        [Authorize]
+        public ActionResult SelectDeck(int deckId)
+        {
+            var forgeViewModel = new ForgeViewModel();
+
+            Session["_currentDeckId"] = deckId; 
+            forgeViewModel.CurrentDeck = forgeRepository.getDeckById(forgeViewModel.currentDeckId);
+
+            forgeViewModel = populateViewModel(forgeViewModel);
+
+            return View("Index", forgeViewModel);
+        }
+
+        /// <summary>
+        /// Select a deck to work with
+        /// </summary>
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public ActionResult RenameDeck(Deck deck)
+        {
+            var forgeViewModel = new ForgeViewModel();
+
+            Deck oldDeck = forgeRepository.getDeckById(deck.DeckID);
+
+            if (ModelState.IsValid)
             {
-                forgeViewModel.SearchResults = searchResults;
+                oldDeck.Name = deck.Name;
+                forgeRepository.updateDeck(oldDeck);
             }
+            forgeViewModel = populateViewModel(forgeViewModel);
+
+            return View("Index", forgeViewModel);
+        }
+
+        /// <summary>
+        /// Delete deck with id
+        /// </summary>
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteDeck(int? deckId)
+        {
+            var forgeViewModel = new ForgeViewModel();
+            forgeRepository.deleteDeck(deckId);
+            forgeViewModel = populateViewModel(forgeViewModel);
+
+            return View("Index", forgeViewModel);
+        }
+
+        /// <summary>
+        /// Add card to deck
+        /// </summary>
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddCard(int? cardId, int? deckId)
+        {
+            var forgeViewModel = new ForgeViewModel();
+
+            if (ModelState.IsValid && cardId != null && deckId != null)
+            {
+                forgeRepository.addCardToDeck((int)cardId, (int)deckId);
+            }
+            forgeViewModel = populateViewModel(forgeViewModel);
+
+            return View("Index", forgeViewModel);
+        }
+
+
+        /// <summary>
+        /// Remove a card with cardId from Deck
+        /// </summary>
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public ActionResult RemoveCard(int? cardId, int? deckId)
+        {
+            var forgeViewModel = new ForgeViewModel();
+
+            if (ModelState.IsValid && cardId != null && deckId != null)
+            {
+                forgeRepository.removeCardFromDeck((int)cardId, (int)deckId);
+            }
+            forgeViewModel = populateViewModel(forgeViewModel);
+
+            return View("Index", forgeViewModel);
+        }
+
+        public ForgeViewModel populateViewModel(ForgeViewModel forgeViewModel)
+        {
             
-            return View("Index",forgeViewModel);
+            var userId = User.Identity.GetUserId();
+
+            forgeViewModel.UserId = userId;
+            forgeViewModel.Decks = forgeRepository.getUserDecks(userId);
+            var id = Session["_currentDeckId"] as int?;
+            if (id != null)
+            {
+                forgeViewModel.CurrentDeck = forgeRepository.getDeckById(id);
+                forgeViewModel.CurrentCards = forgeRepository.getCardDetailedInfo(forgeViewModel.CurrentDeck.CardsInDeck);
+
+            }
+
+            return forgeViewModel;
         }
     }
 }

@@ -31,5 +31,6 @@ namespace MagicBuilder.Models
         }
 
         public System.Data.Entity.DbSet<MagicBuilder.Models.Deck> Decks { get; set; }
+        public System.Data.Entity.DbSet<MagicBuilder.Models.Card> Cards { get; set; }
     }
 }
