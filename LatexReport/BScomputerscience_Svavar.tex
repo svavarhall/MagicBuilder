@@ -135,22 +135,25 @@
 }
 \clearpage
 \section{Introduction}
-This report describes the preparation and execution of my final project for my B.S. in computer science. The project initiated from my interest in web development as well as fascination with the card game Magic the Gathering. The goal of this project was to study different methods in developing websites, setting up databases and overall make a functional and user friendly site. This report describes a simple website where a user can further immerse himself in searching, browsing and studying all the cards available in the game. The premise of what the system can do for the user is a front for a study of different web development techniques and a number of them are used in developing the system itself although the system itself will eventually be made with ASP.NET MVC using Visual Studios. The first part of this report describes the requirement analysis, followed by the preliminary design phase, ending with an overview of the production process itself. The last parts of this report contain the conclusion, word definitions and references.
+This report describes the preparation and execution of my final project for my B.S. in computer science. The project initiated from my interest in web development as well as a fascination with the card game Magic the Gathering. The goal of this project is to study different methods in developing websites, setting up databases and overall make a functional and user friendly site. This report describes a simple website where a user can further immerse himself in searching, browsing and studying all the cards available in the game. The system itself will use Magic the Gathering as a premise but the most important thing will be a prototype mini version of a application, with 
+ \\ requirement analysis and usability studies and the study of ASP.NET MVC, using Visual Studio. The first part of this report describes the requirement analysis, followed by the preliminary design phase, ending with an overview of the production process itself. The last parts of this report contain the conclusion and references.
 
 \section{About the System}
 Magic was the first trading card game produced and it continues to thrive, with approximately twelve million players as of 2011. Magic can be played by two or more players each using a deck of 60+ printed cards or a deck of virtual cards through the Internet Based Magic: The Gathering Online. An organized tournament system and a community of professional Magic players has developed, as has a secondary market for Magic cards. Magic cards can be valuable due to their rarity and utility in gameplay (\href{http://en.wikipedia.org/wiki/Magic:_The_Gathering}{further information}).
   
-This system, called Magic Builder, is meant as a reference guide for Magic players to search and browse cards, view detail information about them and build deck of cards. Magic Builder will allow a user to register an account on favorite cards and build decks on his profile. The user can also view information about Magic and the different card sets that have been published.
+This system, called Magic Builder, is meant as a reference guide for Magic players to search and browse cards, view detail information about them and build deck of cards. Magic Builder will allow a user to register an account and build decks on his own profile.
 
 \section{Competition}
 \subsection{mtg vault}
 This website is an extensive library of Magic The Gathering information. The website mostly centers around viewing decks from other users and sharing your own. The card search is advanced and gives a lot of options. Overall the website works pretty well and is easy to use. The biggest flaws I noticed while researching MtgVault concern the look and feel of the site, it looks dated and unresponsive, when using the card search or clicking items the page executes a full reload and most importantly the page is not scalable and therefore only works on desktop computers.
 (\href{http://www.mtgvault.com/}{mtg vault}).
-\subsection{mtg vault}
+\subsection{What can be simulated}
 Magic builder will feature a lot of the same functions as mtgVault such as searching for cards and building decks, however my goal is to make Magic builder simple, fast and available on all screen sizes. 
 
+\clearpage
+
 \section{The Average User}
-perhaps a text about the purpose of this section...
+To better visualize how the system would be used, I felt that it was important to analyze a typical user of a system of this kind.
 \subsection{Background}
 The average system user will be in the age range 20 - 40, any gender and have an elementary education or more. The user will most likely have good computer experience and have minimal disabilities, although poor eyesight could be a factor.
 \subsection{System Use}
@@ -165,6 +168,8 @@ The average user will use the system any day of the week, with possible spikes o
 \subsection{Main Goals}
 The average user will use the system to make an account, search and browse cards and make decks. Possibly connect with other players and share ideas.
 
+\clearpage
+
 \section{Requirements}
 The following is a list of functionalities that the user can do within the system. They are ordered by priority A, B or C. Requirements with priority A are essential, B are features that are important but not critical and C are nice to have features. The numbers in the user stories column refer to user stories with the corresponding numbers.
 \subsection{Functional Requirements}
@@ -176,11 +181,15 @@ The following is a list of functionalities that the user can do within the syste
   \makebox[\textwidth]{\includegraphics[width=1\textwidth]{non-functional.png}}
 \end{center}
 
+\clearpage
+
 \section{User Stories}
 The user stories describe the requirements in an everyday language. They also suggest a reason for wanting to be able to complete the tasks. They are meant to be simple and easy to understand and should make a good checklist when implementing the system. The user stories are ordered by priority, with the red boxes containing the highest priority stories, the yellow the intermediate ones and the green the lowest priority. Although the yellow and green user stories might not be implemented they are nevertheless included in case the organization of the project, or the priority of the user stories, changes in any way.
 \begin{center}
   \makebox[\textwidth]{\includegraphics[width=1\textwidth]{UserStories.png}}
 \end{center}
+
+\clearpage
 
 \section{Usability Goals}
 I decided to set a few target goals for new users, if more than 80\% of them are able to perform the tasks with the given constraints then the system’s usability is satisfactory, but of course experienced users should easily be able to outperform the constraints.
@@ -200,6 +209,8 @@ The first wireframe describes the front page of the website. It has the same lay
 \begin{center}
   \makebox[\textwidth]{\includegraphics[width=1\textwidth]{WireframeFrontPage.png}}
 \end{center}
+\clearpage
+
 The login page will also have the same layout as the other pages but display a login form where the user can insert his login information or press register if the user doesn’t have an account. The register page is the same as the login page except it displays a register form.
 \begin{center}
   \makebox[\textwidth]{\includegraphics[width=1.1\textwidth]{WireframeSignIn.png}}
@@ -239,7 +250,7 @@ During the programming phase I will explore different ways of developing the sys
   \item For source control hosting, I will use github.com, and connect to github through the team explorer in Visual Studio.
   \item I will use bootstrap to make visualisation changes to the website, but also to ensure accessibility and responsiveness of the website.
   \item The prototypes are implemented in Google Spreadsheet and Photoshop.
-  \item The navigation diagram and class diagram were made in StarUML.
+  \item The navigation diagram was made in StarUML.
   \item Google Docs and \LaTeX \enspace was used to make the reports.
 \end{itemize}
 
@@ -304,7 +315,7 @@ I decided to put forth a few programming rules to follow, for better consistency
     \item End comment text with a period.
     \item Should be written in English.
     \end{itemize}
-    \item Always specify [HttpPost] or [HttpGet].
+    \item Always specify [HttpPost] or [HttpGet].
     \item Use a try-catch statement for most exception handling.
     \item Avoid using abbreviations in names.
     \item Do not use underscores in identifiers.
@@ -335,31 +346,86 @@ I decided to put forth a few programming rules to follow, for better consistency
     \end{itemize}
   \lstinputlisting{ProgrammingRules/javascriptrules.js}
 
+\clearpage
+
 \section{The Production Process}
+During the production process I worked with many tools for “bootstrapping” or creating new web apps that come prepackaged with everything a particular framework needs. While working with Angular I mostly used the \href{http://yeoman.io}{http://yeoman.io} generator which can bootstrap an Angular project with build tools included such as automated tests, package manager, source control and automated \\ deployment. After getting all of that working and setting up a webapp with some basic functionality such as a card search and some css styling I set off to get the database working, with user and card relations as well as authentication. That is where I had the most problems, getting the database to store card data and connecting that to users didn’t work. After some time I decided to move over to ASP.NET MVC5 and started from scratch there.
+  
+When I started on ASP.NET I decided to use the code first approach when building databases. I built some model classes for card and deck data and used code-first migrations to generate the database schema straight from the code. After dropping the database and redesigning the model classes a few times I had a working model of my data and a database to connect to. With the database layer ready I created a Repository which contains all the methods which manipulate the database, that way the database layer is completely separated from the logic and the views. By using a clear separation of the three layers replacing a layer becomes easy. After that I needed a way to pass more than one model into my views, such as Magic cards, decks and user data. I created a viewModel class that contains all the data my views need. With that taken care of I created controller endpoints for urls such as /createDeck, /search etc. with corresponding views. For easier styling I added bootstrapLess which is an extended .less version of the popular Bootstrap UI css style framework.  Less allows the designer to think more like a programmer while adding styling to pages. Less uses functions, variables and selector nesting for easier development. When the project is built the .less files are converted to .css. Finally, after the core functionality regarding search and decks was completed I added a details pop up view for individual cards and did some refactoring on the code, such as putting repeated html into partial views to reduce clutter in the Razor view pages. I added filters to the search to be able to narrow down card choices and then I deployed the app to a cloud based server hosted with Microsoft.
 \subsection{How the overall production fared}
-In the first stages of development the core functionality such as logic and view rendering will be done on the server but when I've finished building the core functions on the server and the user interface is complete I plan to  move the view rendering to the browser. To make the page faster and enable asynchronous loading of page elements I will use Javascript AJAX calls to send and receive data from  the server. By building the system incrementally I can ensure that the page will work on a large range of devices, including ones with Javascript turned off.
+I initially started building the system using AngularJS along with an online database \href{http://www.firebase.com}{www.firebase.com}. I had some trouble getting things to work, especially concerning the database connections. In the end I decided that AngularJS framework was too large and complex for the simple functionality of Magic Builder so I abandoned that approach in favor of using asp.net MVC5. Having had no experience with neither of those systems I spent a lot of time doing tutorials and reading about how things work. I also started from scratch a few times in order to eliminate design errors while building the database and models. Getting the initial system to build, connecting the database and enabling user accounts was challenging but after a view tries I got things working. 
+
+\clearpage
+
 \subsection{What went wrong and how it can be done better next time
 }
-I initially started building the system using AngularJS along with an online database \href{http://www.firebase.com}{www.firebase.com}. I had some trouble getting things to work, especially concerning the database connections. In the end i decided that AngularJS framework was too large and complex for the simple functionality of Magic Builder so i abandoned that approach in favor of using asp.net MVC5. Having had no experience with both of those systems I spent a lot of time doing tutorials and reading about how things work. I also started from scratch a few times in order to eliminate design errors while building the database and models. Getting the initial system to build, connecting the database and enable-ing user accounts can fail in a number of ways and errors can pop up that can be hard to handle.
+While working on the project I spent a lot of time on setting up new Angular and ASP.NET MVC5 web apps, configuring databases and managing authentication. On my next project I know I will be much better familiarized with the frameworks which will cause me to design the inner workings of the system in accordance with the frameworks. I can than hopefully avoid design errors which led to me starting from scratch a few times.
+At the start of the project while I worked with AngularJS I had some problems setting up a database connections with \href{http://www.firebase.com}{www.firebase.com}, in the future I will be wary of using bleeding edge technologies such as the Angular and Firebase wrapper AngularFire, lack of examples and documentation proved problematic.
+After I connected to the online Magic the gathering database with the MtgDb.driver.dll available on \href{http://api.mtgdb.info/}{http://api.mtgdb.info/} I noticed that I was getting parse errors on some JSON data so that the search feature was completely broken, fortunately someone had posted details about the error on the projects \href{https://github.com/planeswalkers/CSharpMtgDb.Info}{github site}. After cloning the project i was able to locate the problematic code, fix it and rebuild the .dll file. Everything worked like a charm after that.
 
 \section{Requirements Outcome}
+\begin{center}
+  \makebox[\textwidth]{\includegraphics[width=1\textwidth]{RequirementsRevised.png}}
+\end{center}
+\begin{center}
+  \makebox[\textwidth]{\includegraphics[width=1\textwidth]{NonFunctionalRequirementsRevised.png}}
+\end{center}
+\clearpage
 \subsection{What Requirements were met}
-\subsection{What Requirements where left out and why}
+The main goal of this project was to finish the fundamental requirements and during the implementation learn more about the overall setup of a web application. The initial step was to allow users to register an account, login and log out. The MVC ASP.NET framework in Visual Studio offers a premade authentication which I could use as a base for MagicBuilder. The built in functionality for the project did help in some areas but not in all. Nevertheless, I decided to try to use as much of it as I could since it offers a lot of perks, such as input validation and security for database records. The account requirements were therefore quite straightforward to implement although I needed some research to make my own tables connect with the user table as to make sure that each user had separate decks and saved cards.
+  
+The second part of the project became the search. I started by making a simple search where the user could input a search input string and get all cards that contained that particular string in their name. The user is presented with no more than 100 cards that he can browse through. When I got further into the project and got more comfortable with the online database I added a few filters to the search. The filters allow the user to narrow down their search a bit which is much more user friendly. I found it unnecessary to add more filters since the project is only meant as a prototype.
+
+Each card presented by the search also includes a detailed information about itself. Since the cards themselves are sometimes hard to read I felt it was important that the user could view these details in a larger window. I added a flip over effect on the cards that presents a button that the user can press for more details about the card. It provides a nice visual as well as a simple interface for the user. When the user presses the button a window is displayed while the surroundings are blurred so the window becomes very clear and the user is not interrupted by other material. The window displays the card image a bit larger and all relevant data related to that card.
+
+The main reason for making an account based application was to allow the user to create his personal decks and add cards to them. It took a bit of time to get my database tables to work with the user database as well as the online database but when the connection had been properly made I made a tab bar where the user can create and view his decks. I also created a rename and delete deck functions which I felt was important for the usability of the system. The ‘add to deck’ and ‘remove from deck’ buttons were placed on the backside of the cards with the ‘detail’ button for good consistency.
+
+The non-functional requirements were not a high priority. Nevertheless, I tried to keep them in mind as I worked and managed to finish a few of them.
+
+Overall I am very pleased with the progress of the high priority requirements. I feel that the system now offers a good base for a larger project and it should be great foundation to built upon.
+
 \subsection{What Requirements where not finished and why}
+Since this project was meant as a study of basic web development, I decided to focus on finishing the highest priority requirements and try to implement them so as to make the system a good mini version of a system of this type. All lower priority requirements were therefore left out, i.e. all B and C requirements, since all extra time was spent on optimizing the high priority requirements rather than adding more features.
+
+All non-functional requirements were B or moderate priority. Even so, some of them I managed to finish but the help and error messages are not finished. There is some input validation and there aren't many places where the user can make mistakes so these messages should be one of my future goals.
 
 \section{Usability Goals Outcome}
+The usability goals were put forth to make sure that the features implemented were simple and easy to use. No formal usability test was conducted, although I did test the system informally on another user that had no trouble finishing the task required in the time limit given by the usability goals. I felt it was very helpful to have formulated these goals since it made me think more on how the user would actually use the system and not only on how it would work. I believe that during web development it is especially important to not forget the user and always try to envision the user’s responses to the interface and its functionality.
 
 \section{Changes from Initial Analysis and Design}
 \subsection{Interface Design}
-\subsection{Class Diagram}
+My main frame of reference for the interface design were the wireframes. I made the graphic design models more as inspiration but I always suspected that the project’s timeframe would not allow for such an extreme design. I also felt it was more important that the website was responsive so I decided to use bootstrap as much as possible. The layout of the page turned out quite similar to the wireframes, although, in the forge where the user can make decks and search for cards, I decided to have the decks content listed above the search and not the otherway around like in the wireframes. Furthermore, some of the top nav bar links have other names than I originally planned, but still the layout is quite similar.
+\subsection{The Navigation Diagram}
+Although the navigation diagram was very simple I feel it helped me visualize the overall navigation throughout the website. I decided to keep the navigation as I originally designed although some names changed and I left out the ‘about Magic’ site since it didn’t require any programming and was therefore a bit unnecessary for this project.
 
-\section{Word Definitions}
-\begin{itemize}
-\item ...
-\end{itemize}
+\section{What was Learned}
+This project increased my understanding of web development considerably. I feel that I have a much better grasp of the MVC concept and how the three layered design works when working with web applications.
+  
+Researching, doing tutorials and building the AngularJS project gave me a lot of experience coding in Javascript , working with Javascript frameworks and manipulating data in the JSON format.
+
+Web programming in ASP.NET was completely new to me so I spent some time reading about how it works and after that came countless tutorials and finally the project itself. I now have a good understanding of how the ASP.NET MVC5 model works, how to code the controllers, work with Razor views to bind data into views and compile HTML, manipulate the configuration files, manage databases, work with source control in Visual studio and deploying the webapp to a live server.
+
+\clearpage
+
+\section{Conclusion}
+Overall I am very happy with how the project turned out, I accomplished my goals regarding learning the technologies needed to become a more valuable member at work.
+The webapp is simple and there are still a lot of features I’d like to add, such as layout and style changes, error handling, deck information and probability statistics but the system works and is now running on a live server at \href{http://magicbuilder.azurewebsites.net/}{http://magicbuilder.azurewebsites.net/}. 
+\\ The code is available at \href{https://github.com/svavarhall/MagicBuilder}{https://github.com/svavarhall/MagicBuilder}. I fell like I'm just getting started with the system so I will undoubtedly continue development over the summer and hopefully I can get it to a stage where me and my friends at work can start using it to track scores, look at statistics and other related things during our weekly Magic sessions. 
 
 \clearpage
 
 \section{References}
+
+\href{http://en.wikipedia.org/wiki/Magic:_The_Gathering}{Further information about Magic the Gathering, the card game.}
+\\ \href{http://www.mtgvault.com/}{mtg vault}
+\\ \href{http://api.mtgdb.info/}{http://api.mtgdb.info/}
+\\ \href{http://yeoman.io}{http://yeoman.io}
+\\ \href{http://www.firebase.com}{www.firebase.com}
+\\ \href{https://github.com/planeswalkers/CSharpMtgDb.Info}{The Github site for the Magic Database}
+\\ \href{https://docs.angularjs.org}{The official AngularJs documentation}
+\\ \href{https://egghead.io/}{Egghead.io - a source of AngularJS tutorials}
+\\ \href{https://thinkster.io/}{Thinkster.io - a source of AngularJS tutorials}
+\\ \href{http://www.asp.net/mvc}{asp.NET MVC official tutorials portal}
+\\ \href{https://azure.microsoft.com/en-us/documentation/}{Microsoft azure web services documentation}
 
 \end{document}
